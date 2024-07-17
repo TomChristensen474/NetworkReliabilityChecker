@@ -12,10 +12,10 @@ def create_connection(path) -> Connection|None:
 
     return connection
 
-connection = create_connection("networy_history.db")
+connection = create_connection("network_history.db")
 
 if connection:
     cursor = connection.cursor()
-    result = cursor.execute("CREATE TABLE IF NOT EXISTS network_history (id INTEGER PRIMARY KEY, time TEXT, average_ping REAL, packet_loss REAL, network_down BOOLEAN DEFAULT FALSE)")
+    result = cursor.execute("CREATE TABLE IF NOT EXISTS network_history (id INTEGER PRIMARY KEY, datetime TEXT, average_ping REAL, packet_loss REAL, network_down BOOLEAN DEFAULT FALSE)")
 
     connection.close()

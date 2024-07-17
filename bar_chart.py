@@ -23,37 +23,35 @@ def create_connection(path) -> Connection|None:
 
     return connection
 
-connection = create_connection("networy_history.db")
+### converts packet loss to color for bar chart
+def packet_loss_to_color(packet_loss: float) -> str:
+    if packet_loss < 0.25:
+        return "#26AAE1"
+    elif packet_loss < 0.5:
+        return "orange"
+    else:
+        return "red"
+
+connection = create_connection("network_history.db")
 
 # ping_result = ""
 if connection:
     cursor = connection.cursor()
 
-    result = cursor.execute("SELECT * FROM network_history ORDER BY id DESC LIMIT 20")
-    
+    result = cursor.execute("SELECT * FROM network_history WHERE `datetime` >= datetime('now', '-1 hour') AND network_down = 0 ORDER BY id")
+
     # result = [(time, average_ping, packet_loss), ...]
     result = result.fetchall()
-    # print(result)
-    # df = pd.DataFrame(result,
-    #                   columns=['id', 'time', 'average_ping', 'packet_loss', 'network_down'])
-    # df.time = [(np.datetime64(datetime.strptime(i[1], "%d %b %Y %H:%M:%S"))) for i in result]
-    # src = ColumnDataSource(df)
-    # print(src)
-    # source = ColumnDataSource([{
-    #     'time': (np.datetime64(datetime.strptime(i[1], "%d %b %Y %H:%M:%S"))),
-    #     'average_ping': i[2],
-    #     'packet_loss': i[3],
-    #     'network_down': i[4]}
-    #     for i in result]
-    # )
 
-    # x = [i[1] for i in result]
-    y = [i[2] for i in result]
-    # print(y)
-    datetimes = [(np.datetime64(datetime.strptime(i[1], "%d %b %Y %H:%M:%S"))) for i in result]
-    # colour = [i[4] for i in result]
-    # print(datetimes)
-    # print(df.average_pint.to_list())
+    ping_no_loss = [i[2] for i in result]
+    datetimes_no_loss = [np.datetime64(i[1]) for i in result]
+    color = [packet_loss_to_color(i[3]) for i in result]
+
+    # result = cursor.execute("SELECT * FROM network_history WHERE `datetime` >= datetime('now', '-1 hour') AND packet_loss >= 0.25 ORDER BY id")
+    # result = result.fetchall()
+    # ping_loss = [i[2] for i in result]
+    # datetimes_loss = [np.datetime64(i[1]) for i in result]
+
 
 curdoc().theme = "dark_minimal"
 
@@ -62,7 +60,8 @@ p = figure(title="Network Status", sizing_mode="stretch_width", x_axis_type="dat
 
 # p.vbar(x="time", top="time", width=0.1, legend_label="Packet loss", bottom=0,
 #     fill_color=factor_cmap("network_down", factors=['false', 'true'], palette=["red", "green"]))
-p.vbar(x=datetimes, top=y, width=0.1, legend_label="Packet loss", bottom=0)
+p.vbar(x=datetimes_no_loss, top=ping_no_loss, width=0.1, bottom=0, color=color)
+# p.vbar(x=datetimes_loss, top=ping_loss, width=0.1, legend_label="Packet loss", bottom=0, color="red")
 
 p.toolbar_location = None # type: ignore
 p.xaxis.formatter = DatetimeTickFormatter(hourmin="%H:%M", days="%d %b %Y")
