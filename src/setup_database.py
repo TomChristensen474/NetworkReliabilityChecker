@@ -12,7 +12,7 @@ def create_connection(path) -> Connection|None:
 
     return connection
 
-connection = create_connection("network_history.db")
+connection = create_connection("src/network_history.db")
 
 if connection:
     cursor = connection.cursor()

@@ -32,7 +32,7 @@ def packet_loss_to_color(packet_loss: float) -> str:
     else:
         return "red"
 
-connection = create_connection("network_history.db")
+connection = create_connection("src/network_history.db")
 
 # ping_result = ""
 if connection:
