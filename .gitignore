@@ -1,3 +1,7 @@
+# Manually ignored
+src/network_history.db
+src/bar_chart.html
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
