@@ -7,11 +7,14 @@ Reason for this project was diagnosing 'true' speed of new 5G router vs a horrib
 #### Install dependencies
 ```pip install -r requirements.txt```
 ### Run
-#### Create sqlite database
+Create sqlite database
+
 ```python setup_database.py```
 
-#### Run the script to continually ping, store in database and clear out old data from database
+Run the script to continually ping, store in database and clear out old data from database
+
 ```python runner.py```
 
-#### Setup localhost server to view results in browser (to be run in separate shell to runner)
+Setup localhost server to view results in browser (to be run in separate shell to runner)
+
 ```python server.py```
