@@ -4,17 +4,29 @@ Simple python script for raspberry pi (or any device) that pings a server regula
 Reason for this project was diagnosing 'true' speed of new 5G router vs a horrible WiFi setup in my house.
 
 ## Setup
+### DOCKER
+#### Build
+```docker build -t network-reliability-checker```
+
+#### Run
+``` docker run -dp 127.0.0.1:8000:8000 network-reliability-checker```
+
+### Using virtual environment
 #### Install dependencies
 ```pip install -r requirements.txt```
 ### Run
 Create sqlite database
 
-```python setup_database.py```
+```python src/setup_database.py```
 
 Run the script to continually ping, store in database and clear out old data from database
 
-```python runner.py```
+```python src/runner.py```
+
+The ping operation needs administrator privileges to run and if you're running this in a virtual environment, you won't be able to run the commands with elevated privilege. We can, however, give Python elevated permissions to use RAW and PACKET sockets (allowing ping to function as normal) using the following command:
+
+```sudo setcap cap_net_raw+ep $(readlink -f $(which python))```
 
 Setup localhost server to view results in browser (to be run in separate shell to runner)
 
-```python server.py```
+```python src/server.py```
