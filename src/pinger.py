@@ -16,7 +16,7 @@ def create_connection(path) -> Connection|None:
     return connection
 
 def ping_and_record():
-    connection = create_connection("src/network_history.db")
+    connection = create_connection("network_history.db")
 
     # ping_result = ""
     if connection:

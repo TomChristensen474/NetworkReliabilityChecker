@@ -1,5 +1,6 @@
 import schedule
 import time
+import setup_database
 
 from bar_chart import render_data
 from clear_old_data import remove_data_before_last_x_days
