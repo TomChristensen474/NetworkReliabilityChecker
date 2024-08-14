@@ -7,7 +7,7 @@ from sqlite3 import Connection, Error
 from bokeh.io import curdoc
 from bokeh.models import DatetimeTickFormatter, ColumnDataSource
 from bokeh.palettes import Bright6
-from bokeh.plotting import figure, show
+from bokeh.plotting import figure, show, save
 from bokeh.transform import factor_cmap
 
 # from time import strptime
@@ -69,7 +69,7 @@ def render_data():
     p.yaxis.axis_label = "Average Ping (ms)"
     p.xaxis.axis_label = "Time"
 
-    show(p)
+    save(p) # set to show(p) for debugging without server
 
     print("Rendered bar_chart")
 
