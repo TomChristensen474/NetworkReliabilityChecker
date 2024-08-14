@@ -6,7 +6,7 @@ Reason for this project was diagnosing 'true' speed of new 5G router vs a horrib
 ## Setup
 ### DOCKER
 #### Build
-```docker build -t network-reliability-checker```
+```docker build -t network-reliability-checker .```
 
 #### Run
 ``` docker run -dp 127.0.0.1:8000:8000 network-reliability-checker```
