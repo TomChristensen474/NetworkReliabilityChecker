@@ -2,8 +2,7 @@ import unittest
 import sys, os
 sys.path.append(os.path.abspath(".."))
 
-from time import gmtime, strftime
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from src import bar_chart
 from src import db_connector
