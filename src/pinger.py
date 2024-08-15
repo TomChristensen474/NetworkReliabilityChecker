@@ -1,22 +1,12 @@
-import sqlite3
-
 from pythonping import ping
 from sqlite3 import Connection, Error
 from time import gmtime, strftime
 # from datetime import datetime
 
-def create_connection(path) -> Connection|None: 
-    connection = None
-    try:
-        connection = sqlite3.connect(path)
-        print("Connection to SQLite DB successful")
-    except Error as e:
-        print(f"The error '{e}' occurred")
-
-    return connection
+from src import db_connector
 
 def ping_and_record():
-    connection = create_connection("network_history.db")
+    connection = db_connector.create_connection("network_history.db")
 
     # ping_result = ""
     if connection:
@@ -36,7 +26,7 @@ def ping_and_record():
             print("Network down")
             data = (datetime, None, ping_result.packet_loss, True)
 
-        result = cursor.execute("INSERT INTO network_history VALUES(NULL, ?, ?, ?, ?)", data)
+        cursor.execute("INSERT INTO network_history VALUES(NULL, ?, ?, ?, ?)", data)
         connection.commit()
         
         connection.close()
