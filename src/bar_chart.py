@@ -10,7 +10,7 @@ from bokeh.transform import factor_cmap
 from datetime import datetime
 from dataclasses import dataclass
 
-from src import db_connector
+import db_connector
 
 @dataclass
 class PingResult:
@@ -64,10 +64,6 @@ def render_data(data):
             ping_no_loss.append(i.ping)
             datetimes_no_loss.append(i.datetime)
             color.append(packet_loss_to_color(i.packet_loss))
-    
-    # ping_no_loss = data[0]
-    # datetimes_no_loss = data[1]
-    # color = data[2]
     
     # p.vbar(x="time", top="time", width=0.1, legend_label="Packet loss", bottom=0,
     #     fill_color=factor_cmap("network_down", factors=['false', 'true'], palette=["red", "green"]))
