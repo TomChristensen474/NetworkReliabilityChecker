@@ -1,12 +1,11 @@
 import unittest
 import sys, os
-sys.path.append(os.path.abspath(".."))
+sys.path.append(os.path.abspath("./src"))
 
 from datetime import datetime
 
-from src import bar_chart
-from src import db_connector
-
+import bar_chart
+import db_connector
 
 class TestDisplayData(unittest.TestCase):
     def testDisplayCodeNotError(self):
