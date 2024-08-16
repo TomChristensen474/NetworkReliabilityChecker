@@ -1,13 +1,10 @@
 import numpy as np
 import pandas as pd
-import dataclasses
+from dataclasses import dataclass
 
 from bokeh.io import curdoc
-from bokeh.models import DatetimeTickFormatter, ColumnDataSource
-from bokeh.palettes import Bright6
+from bokeh.models import DatetimeTickFormatter
 from bokeh.plotting import figure, show, save
-from bokeh.transform import factor_cmap
-from datetime import datetime
 from dataclasses import dataclass
 
 import db_connector
@@ -37,7 +34,8 @@ def get_data_from_DB(timeframe_hours: int, connection):
     if connection:
         cursor = connection.cursor()
 
-        result = cursor.execute("SELECT * FROM network_history WHERE `datetime` >= datetime('now', '-1 hour') AND network_down = 0 ORDER BY id")
+        # get data from last x hours when network is up
+        result = cursor.execute(f"SELECT * FROM network_history WHERE `datetime` >= datetime('now', '-{timeframe_hours} hour') AND network_down = 0 ORDER BY id")
         # result = [(time, average_ping, packet_loss), ...]
         result = result.fetchall()
 
