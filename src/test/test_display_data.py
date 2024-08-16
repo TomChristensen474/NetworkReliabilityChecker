@@ -8,7 +8,7 @@ import bar_chart
 import db_connector
 
 class TestDisplayData(unittest.TestCase):
-    def testDisplayCodeNotError(self):
+    def test_display_code_not_error(self):
         date_time = (datetime.now()).strftime("%F %T")
         connection = db_connector.create_connection(":memory:") # creates DB in memory
 
@@ -27,7 +27,6 @@ class TestDisplayData(unittest.TestCase):
                 self.fail(f"Error: {e}")
 
             connection.close()
-
 
 if __name__ == '__main__':
     unittest.main()

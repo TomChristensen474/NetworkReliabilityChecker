@@ -10,7 +10,8 @@ import pinger
 
 class TestPinger(unittest.TestCase):
     # @no_connection
-    def testPingerHandlesNetworkDropouts(self):
+    def test_pinger_handles_network_dropouts(self):
+        pass
         # Test code goes here
         self.assertEqual(False, pinger.do_ping())
 
