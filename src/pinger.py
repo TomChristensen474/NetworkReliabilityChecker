@@ -1,7 +1,6 @@
 from pythonping import ping
 from sqlite3 import Connection, Error
 from time import localtime, strftime
-# from datetime import datetime
 
 import db_connector
 
@@ -14,7 +13,6 @@ def do_ping():
 def ping_and_record():
     connection = db_connector.create_connection("network_history.db")
 
-    # ping_result = ""
     if connection:
         cursor = connection.cursor()
 
