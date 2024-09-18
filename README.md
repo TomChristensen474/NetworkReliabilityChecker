@@ -55,9 +55,3 @@ The ping operation needs administrator privileges to run and if you're running t
 ```bash
 sudo setcap cap_net_raw+ep $(readlink -f $(which python))
 ```
-
-Setup localhost server to view results in browser (to be run in separate shell to runner)
-
-```bash
-python src/server.py
-```
