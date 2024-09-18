@@ -4,11 +4,13 @@ from time import localtime, strftime
 
 import db_connector
 
+
 def do_ping():
     try:
-        return ping('8.8.8.8', interval=1, verbose=False) # one ping every second
+        return ping("8.8.8.8", interval=1, verbose=False)  # one ping every second
     except Exception as e:
         return False
+
 
 def ping_and_record():
     connection = db_connector.create_connection("network_history.db")
@@ -31,7 +33,8 @@ def ping_and_record():
 
         cursor.execute("INSERT INTO network_history VALUES(NULL, ?, ?, ?, ?)", data)
         connection.commit()
-        
+
         connection.close()
+
 
 ping_and_record()

@@ -1,8 +1,10 @@
 # Manually ignored
-src/network_history.db
 src/bar_chart.html
 src/runner.html
+src/tests/test_display_data.html
+
 network_history.db
+src/network_history.db
 src/tests/network_history.db
 
 # Byte-compiled / optimized / DLL files

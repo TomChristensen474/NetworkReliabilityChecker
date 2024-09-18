@@ -2,7 +2,8 @@ import sqlite3
 
 from sqlite3 import Connection, Error
 
-def create_connection(path) -> Connection|None: 
+
+def create_connection(path) -> Connection | None:
     connection = None
     try:
         connection = sqlite3.connect(path)

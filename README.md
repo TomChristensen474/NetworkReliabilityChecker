@@ -1,7 +1,7 @@
 # NetworkReliabilityChecker
-Simple python script for raspberry pi (or any device) that pings a server regularly and logs ping/packet loss.
+Python scripts that I can run in a docker container on my NAS that pings a server regularly and logs ping/packet loss.
 
-Reason for this project was diagnosing 'true' speed of new 5G router vs a horrible WiFi setup in my house.
+Reason for this project was diagnosing whether my internet instability is due to dropouts from new 5G router vs a horrible WiFi/powerline setup in my house.
 
 ## Setup
 ### Using Docker - recommended
