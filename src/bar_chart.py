@@ -64,6 +64,10 @@ def render_data(data):
             ping_no_loss.append(i.ping)
             datetimes_no_loss.append(i.datetime)
             color.append(packet_loss_to_color(i.packet_loss))
+        else:
+            ping_no_loss.append(200) # placeholder to be able to show a bar when there is packet loss
+            datetimes_no_loss.append(i.datetime)
+            color.append(packet_loss_to_color(i.packet_loss))
     
     # p.vbar(x="time", top="time", width=0.1, legend_label="Packet loss", bottom=0,
     #     fill_color=factor_cmap("network_down", factors=['false', 'true'], palette=["red", "green"]))
