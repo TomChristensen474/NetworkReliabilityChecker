@@ -1,7 +1,20 @@
 # NetworkReliabilityChecker
 Python scripts that I can run in a docker container on my NAS that pings a server regularly and logs ping/packet loss.
 
-Reason for this project was diagnosing whether my internet instability is due to dropouts from new 5G router vs a horrible WiFi/powerline setup in my house.
+Reason for this project was diagnosing whether my internet instability is due to dropouts from new 5G modem vs a horrible WiFi/powerline setup in my house.
+
+Result
+
+![Screenshot](images/screenshot.png)
+Key:
+RED - >50% packet loss,
+
+ORANGE - >25% packet loss,
+
+BLUE - no packet loss,
+
+If there is packet loss ping is fixed at 200ms.
+
 
 ## Setup
 ### Using Docker - recommended
