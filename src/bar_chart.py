@@ -79,7 +79,7 @@ def render_data(data):
     p.yaxis.axis_label = "Average Ping (ms)"
     p.xaxis.axis_label = "Time"
 
-    save(p) # set to show(p) for debugging without server
+    save(p, filename="html/index.html") # set to show(p) for debugging without server
 
     print("Rendered bar_chart")
 
