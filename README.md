@@ -28,7 +28,8 @@ docker build -t network-reliability-checker .
 docker run -dp 127.0.0.1:8000:8000 network-reliability-checker
 ```
 
-Open in browser using the following URL:
+#### Open
+Open in browser to your [localhost url](http://127.0.0.1:8000/) at port 8000
 
 
 ### Using virtual environment
